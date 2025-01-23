@@ -5,8 +5,8 @@ from pathlib import Path
 import pytest
 import yaml
 
-import obsidian2quarto.update_yaml_front_matter
-from obsidian2quarto.resolve_wikilink import wikilink_to_markdown
+import src.obsidian2quarto.update_yaml_front_matter
+from src.obsidian2quarto.resolve_wikilink import wikilink_to_markdown
 
 
 def compare_files(processed_file, expected_file):
@@ -46,7 +46,7 @@ def test_modify_markdown_no_draft_tag(tmp_path: Path):
     for file_name in ["no_draft_tag.md"]:
         shutil.copy(input_dir / file_name, tmp_path / file_name)
 
-    obsidian2quarto.modify_markdown.modify_markdown_files(tmp_path)
+    src.obsidian2quarto.update_yaml_front_matter.modify_markdown_files(tmp_path)
     # Compare files with expected output
 
     for file_name in ["no_draft_tag.md"]:
@@ -64,7 +64,7 @@ def test_modify_markdown_no_yaml(tmp_path: Path):
     for file_name in ["no_yaml.md"]:
         shutil.copy(input_dir / file_name, tmp_path / file_name)
 
-    obsidian2quarto.modify_markdown.modify_markdown_files(tmp_path)
+    src.obsidian2quarto.update_yaml_front_matter.modify_markdown_files(tmp_path)
     # Compare files with expected output
 
     for file_name in ["no_yaml.md"]:
@@ -81,7 +81,7 @@ def test_modify_markdown_wrong_draft_tag(tmp_path: Path):
     for file_name in ["wrong_draft_tag.md"]:
         shutil.copy(input_dir / file_name, tmp_path / file_name)
 
-    obsidian2quarto.modify_markdown.modify_markdown_files(tmp_path)
+    src.obsidian2quarto.update_yaml_front_matter.modify_markdown_files(tmp_path)
     # Compare files with expected output
 
     for file_name in ["wrong_draft_tag.md"]:
